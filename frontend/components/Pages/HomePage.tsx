@@ -4,7 +4,7 @@ import HeroSection from "../HeroSection";
 
 const HomePage = () => {
   return (
-    <div className="">
+    <div className="dark:bg-[#090D1F] dark:text-white">
       <HeroSection />
     </div>
   );

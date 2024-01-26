@@ -18,3 +18,13 @@
 .bg-white-after-focus:not(:placeholder-shown) {
   background-color: white;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 4%;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #929292;
+  border-radius: 10px;
+}

@@ -14,5 +14,5 @@ export const navItems: { name: string; href: string }[] = [
   {
     name: "Newsletters",
     href: "/newsletters",
-  }
+  },
 ];

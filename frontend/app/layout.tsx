@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
+import ThemeProviderWrapper from "@/components/common/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,12 +17,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body
         className={`h-[100vh] w-[100vw] ${inter.className} overflow-x-hidden`}
       >
-        <Navbar />
-        {children}
+        <ThemeProviderWrapper>
+          <div className="h-full w-full flex flex-col">
+            <Navbar />
+            {children}
+          </div>
+        </ThemeProviderWrapper>
       </body>
     </html>
   );

@@ -2,7 +2,7 @@ import AuthFormContainer from "@/components/authentication/AuthFormContainer";
 
 export default function Auth() {
   return (
-    <main className="h-screen w-screen flex flex-col items-center justify-center bg-white">
+    <main className="h-full flex flex-col items-center justify-center bg-white">
       <div className="flex w-full h-full  dark:bg-black">
         <div className="flex-1 h-[90%] border-[#c6c6c65f] border-r-2 bg-white text-black">
           <div className="title-container flex items-center justify-center h-full">
