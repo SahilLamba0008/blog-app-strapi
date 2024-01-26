@@ -46,7 +46,7 @@ const LogInForm = () => {
     <div>
       <h1 className="text-center font-extrabold text-[48px] relative cursor-default whitespace-nowrap">
         Log In
-        <span className="className=text-center font-extrabold text-[48px] font-outline-2 text-white border-clip-text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-1 ml-1">
+        <span className="className=text-center font-extrabold text-[48px] font-outline-2 text-white dark:opacity-0 border-clip-text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-1 ml-1">
           Log In
         </span>
       </h1>
@@ -56,20 +56,24 @@ const LogInForm = () => {
       >
         <div>
           <label htmlFor="email">
-            Email <span className="text-gray-800">*</span>
+            Email <span className="text-gray-800 dark:text-cyan-400">*</span>
           </label>
           <input
             type="email"
             id="email"
             name="email"
-            className="w-full bg-[#f0f0f0] border-[#BDBDBD] border-2 outline-none rounded-md px-2 py-1 focus:bg-white transition-all duration-300 focus:py-2 bg-white-after-focus"
+            className="w-full bg-[#f0f0f0] dark:bg-[#090D1F] dark:border-[#bdbdbd6f] border-[#BDBDBD] border-2 outline-none rounded-md px-2 py-1 focus:bg-white transition-all duration-300 focus:py-2 bg-white-after-focus"
             placeholder="Email"
           />
-          <p className="text-red-500 text-[10px]  ml-1">{formErrors.email}</p>
+          <p className="text-red-500 dark:text-cyan-300 text-[10px]  ml-1">
+            {formErrors.email}
+          </p>
         </div>
         <div>
           <FormPasswordToggler label={"Password"} input={"password"} />
-          <p className="text-red-500 text-[10px]  ml-1">{formErrors.password}</p>
+          <p className="text-red-500 dark:text-cyan-300 text-[10px]  ml-1">
+            {formErrors.password}
+          </p>
         </div>
         {/* To use useFromStatus() the form has to be ancestor */}
         <FormSubmitButton title={"Log in"} pendingText={"Logging in..."} />

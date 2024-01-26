@@ -14,7 +14,7 @@ const ThemeSwitcher = () => {
   // to avoid layout shift
   if (!mounted)
     return (
-      <div className="bg-[#090D1F] rounded-full relative cursor-pointer">
+      <div className="bg-[#090D1F] dark:bg-white rounded-full relative cursor-pointer">
         <div className="h-full w-full flex items-center gap-4 justify-start text-white mx-2 my-[7px] transition-all duration-300 ease-in-out">
           <MdOutlineWbSunny size={20} />
           <IoMoonOutline size={20} />
@@ -32,15 +32,15 @@ const ThemeSwitcher = () => {
 
   return (
     <div
-      className="bg-[#090D1F] rounded-full relative cursor-pointer"
+      className="bg-[#090D1F] dark:bg-white rounded-full relative cursor-pointer"
       onClick={handleThemeSwitch}
     >
-      <div className="h-full w-full flex items-center gap-4 justify-start text-white mx-2 my-[7px] transition-all duration-300 ease-in-out">
+      <div className="h-full w-full flex items-center gap-4 justify-start text-white dark:text-black mx-2 my-[7px] transition-all duration-300 ease-in-out">
         <MdOutlineWbSunny size={20} />
         <IoMoonOutline size={20} />
       </div>
       <div
-        className={`slider bg-white rounded-full h-6 w-6 mx-2 -translate-y-1/2 absolute z-10 top-1/2 left-0 ${
+        className={`slider bg-white dark:bg-[#090D1F] rounded-full h-6 w-6 mx-2 -translate-y-1/2 absolute z-10 top-1/2 left-0 ${
           resolvedTheme === "light" ? "translate-x-[140%]" : "translate-x-0"
         } transition-all duration-300 ease-in-out`}
       ></div>

@@ -1,5 +1,4 @@
 import React from "react";
-import ClientDataFetching from "./ClientDataFetching";
 import { NextPage } from "next";
 
 async function getStrapiData() {
@@ -26,12 +25,9 @@ const HeroSection: NextPage = async () => {
           c
         </div>
       </div>
-      <p className="mt-5 underline">Server Data Fetching :</p>
-      {/* Server Side Fetching */}
-      {JSON.stringify(data[1])}
 
-      {/* Client Side Fetching */}
-      <ClientDataFetching />
+      {/* Server Side Fetching */}
+      {/* {JSON.stringify(data[1])} */}
     </div>
   );
 };
