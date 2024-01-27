@@ -1,30 +1,73 @@
-import { z } from "zod";
+export interface ICategoryAttribute {
+  title: string;
+  slug: string;
+}
 
-// Signup schema
-export const signupSchema = z
-  .object({
-    name: z.string().min(3, "Name must be at least 3 characters"),
-    email: z.string().email("Invalid email format"),
-    password: z.string().min(8, "Password must contain at least 8 characters"),
-    confirmPassword: z
-      .string()
-      .min(8, "Password must contain at least 8 characters"),
-  })
-  .superRefine(({ confirmPassword, password }, ctx) => {
-    if (confirmPassword !== password) {
-      ctx.addIssue({
-        code: "custom",
-        path: ["confirmPassword"],
-        message: "Passwords do not match",
-      });
+export interface ICategory {
+  id: number;
+  attributes: ICategoryAttribute;
+}
+
+export interface IPagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
+export interface IResourceMeta {
+  pagination: IPagination;
+}
+
+export interface ICollectionResponse<T> {
+  data: T;
+  meta: IResourceMeta;
+}
+
+export interface IImageData {
+  data: {
+    attributes: {
+      url: string;
+      formats: {
+        small: {
+          url: string;
+        };
+      };
+    };
+  };
+}
+
+export interface IAuthor {
+  data: {
+    attributes: {
+      firstName: string;
+      lastName: string;
+      avatar: {
+        data: {
+          attributes: {
+            formats: {
+              thumbnail: {
+                url: string;
+              }
+            }
+          }
+        }
+      }
     }
-  });
+  }
+}
 
-// Login schema
-export const loginSchema = z.object({
-  email: z.string().email("Invalid email format"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
-});
+export interface IArticleAttributes {
+  title: string;
+  body: string;
+  slug: string;
+  Image: IImageData;
+  createdAt: string;
+  updatedAt: string;
+  author: IAuthor;
+}
 
-type SignupType = z.infer<typeof signupSchema>;
-type LoginType = z.infer<typeof loginSchema>;
+export interface IArticle {
+  id: number;
+  attributes: IArticleAttributes;
+}

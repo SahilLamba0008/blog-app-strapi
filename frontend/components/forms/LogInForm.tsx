@@ -3,7 +3,7 @@ import FormPasswordToggler from "./FormPasswordToggler";
 import { LoginFormAction } from "@/actions/LoginFormAction";
 import { useFormState } from "react-dom";
 import FormSubmitButton from "./FormSubmitButton";
-import { loginSchema } from "@/lib/types";
+import { loginSchema } from "@/lib/zodTypes";
 
 const LogInForm = () => {
   const initialState: any = {

@@ -3,7 +3,7 @@ import FormPasswordToggler from "./FormPasswordToggler";
 import { SignupFormAction } from "@/actions/SignupFormAction";
 import { useFormState, useFormStatus } from "react-dom";
 import FormSubmitButton from "./FormSubmitButton";
-import { signupSchema } from "@/lib/types";
+import { signupSchema } from "@/lib/zodTypes";
 
 const SignUpForm = () => {
   const initialState: any = {
