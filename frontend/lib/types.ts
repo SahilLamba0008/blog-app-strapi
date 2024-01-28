@@ -64,6 +64,7 @@ export interface IArticleAttributes {
   Image: IImageData;
   createdAt: string;
   updatedAt: string;
+  publishedAt: string;
   author: IAuthor;
 }
 
