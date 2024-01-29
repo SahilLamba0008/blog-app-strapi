@@ -48,13 +48,13 @@ export interface IAuthor {
             formats: {
               thumbnail: {
                 url: string;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+              };
+            };
+          };
+        };
+      };
+    };
+  };
 }
 
 export interface IArticleAttributes {
@@ -66,6 +66,7 @@ export interface IArticleAttributes {
   updatedAt: string;
   publishedAt: string;
   author: IAuthor;
+  keywords: string[];
 }
 
 export interface IArticle {
