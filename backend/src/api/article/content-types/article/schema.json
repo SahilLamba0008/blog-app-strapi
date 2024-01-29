@@ -39,6 +39,21 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "articles"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "articles"
+    },
+    "keywords": {
+      "type": "json"
+    },
+    "shortDescription": {
+      "type": "text",
+      "required": true,
+      "minLength": 100,
+      "maxLength": 500
     }
   }
 }

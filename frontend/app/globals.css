@@ -15,7 +15,7 @@
   .font-outline-4 {
     -webkit-text-stroke: 4px black;
   }
-  .font-outline-4_dark{
+  .font-outline-4_dark {
     -webkit-text-stroke: 4px white;
   }
 }
@@ -27,10 +27,18 @@
 
 ::-webkit-scrollbar {
   width: 8px;
-  height: 4%;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #929292;
+  border-radius: 10px;
+}
+
+.dark-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb {
+  background: #4b23a8;
   border-radius: 10px;
 }

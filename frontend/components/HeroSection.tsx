@@ -21,7 +21,7 @@ const HeroSection: NextPage = async () => {
   const { data } = articles;
 
   const handleRecentBlogPost = (blogPosts: IArticle[]): IArticle[] => {
-    const sortedArticles = data.sort(
+    const sortedArticles = blogPosts.sort(
       (a, b) =>
         Date.parse(b.attributes.publishedAt) -
         Date.parse(a.attributes.publishedAt)
@@ -51,18 +51,12 @@ const HeroSection: NextPage = async () => {
                 index === 3 && "col-span-full"
               } flex ${index === 0 && "flex-col"} gap-6`}
             >
-              <div className="flex-1">
+              <div className="relative flex-1 bg-black dark:bg-white rounded-md">
                 <Image
-                  // src={
-                  //   article.attributes.Image.data.attributes.url
-                  // }
-                  src={
-                    "http://localhost:1337/uploads/thumbnail_instagram_reels_thumbnail_illustration_151ff10891.png" /* test only */
-                  }
+                  src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.attributes.Image.data.attributes.url}`}
                   alt="post-cover"
-                  height={1000}
-                  width={1000}
-                  className="h-[200px] w-full object-cover"
+                  fill
+                  className="h-[240px] w-full object-cover"
                 />
               </div>
               <div className="flex-1">
@@ -72,7 +66,9 @@ const HeroSection: NextPage = async () => {
                 <h1 className="font-bold text-xl mb-2">
                   {article.attributes.title}
                 </h1>
-                <p className="line-clamp-3">{article.attributes.body}</p>
+                <p className="line-clamp-4">
+                  {article.attributes.shortDescription}
+                </p>
               </div>
             </div>
           );
