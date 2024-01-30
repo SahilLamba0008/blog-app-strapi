@@ -28,9 +28,9 @@ const ThemeSwitcher = () => {
           <MdOutlineWbSunny size={20} />
           <IoMoonOutline size={20} />
         </div>
-        <div
+        {/* <div
           className={`slider bg-white rounded-full h-6 w-6 mx-2 -translate-y-1/2 absolute z-10 top-1/2 left-0transition-all duration-300 ease-in-out`}
-        ></div>
+        ></div> */}
       </div>
     );
 

@@ -35,11 +35,12 @@ const Navbar = () => {
             {/* Theme Switcher */}
             <ThemeSwitcher />
             {pathName === "/auth" ? (
-              <Link href={"/"}>
-                <button className="bg-[#090D1F] dark:bg-white text-white dark:text-black px-2 py-1 rounded-md flex items-center">
-                  Continue as Guest <GrFormNextLink size={24} />
-                </button>
-              </Link>
+              // <Link href={"/"}>
+              //   <button className="bg-[#090D1F] dark:bg-white text-white dark:text-black px-2 py-1 rounded-md flex items-center">
+              //     Continue as Guest <GrFormNextLink size={24} />
+              //   </button>
+              // </Link>
+              <></>
             ) : (
               <Link href={"/auth"}>
                 <button className="bg-[#090D1F] dark:bg-white text-white dark:text-black px-2 py-1 rounded-md flex items-center gap-2">

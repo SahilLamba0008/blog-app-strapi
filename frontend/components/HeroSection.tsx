@@ -38,17 +38,24 @@ const HeroSection: NextPage = async () => {
     return result;
   };
 
-  const getRandomTailwindColor = () => {
-    const colors = ["red", "blue", "green", "yellow"];
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    const randomColor = colors[randomIndex];
-    const bgClassName = `bg-${randomColor}-100`;
-    const textClassName = `text-${randomColor}-400`;
-    console.log("random color :", bgClassName, textClassName);
-    return colors[randomIndex];
+  const getKeywordClasses = (keywordLength: number) => {
+    switch (true) {
+      case keywordLength <= 4:
+        return "bg-green-100 text-green-500";
+      case keywordLength >= 5 && keywordLength <= 8:
+        return "bg-red-100 text-red-400";
+      case keywordLength > 8 && keywordLength <= 12:
+        return "bg-purple-100 text-purple-500";
+      case keywordLength === 7:
+        return "bg-blue-100 text-blue-500";
+      default:
+        return "bg-orange-100 text-orange-500";
+    }
   };
+
   return (
     <div className="max-w-[1440px] mx-auto max-xl:mx-16">
+      {/* drop-shadow-[2px_2px_4px_rgba(230, 6, 6, 1)] */}
       <h1 className="text-xl font-bold mt-10">Recent blog posts</h1>
       <div className="grid grid-cols-2 gap-10 mt-4">
         {recentBlogPost.map((article: any, index: number) => {
@@ -69,26 +76,32 @@ const HeroSection: NextPage = async () => {
                 />
               </div>
               <div className="flex-1">
-                <p className="text-sm text-[#8754ff] dark:text-[#a57eff] font-bold">
-                  {formattedDate}
-                </p>
-                <h1 className="font-bold text-xl mb-2">
-                  {article.attributes.title}
-                </h1>
-                <p className="line-clamp-4">
-                  {article.attributes.shortDescription}
-                </p>
-                <div className="flex gap-2 flex-wrap">
+                <div>
+                  <p className="text-sm text-[#8754ff] dark:text-[#a57eff] font-bold">
+                    {formattedDate}
+                  </p>
+                  <h1 className="font-bold text-xl mb-2">
+                    {article.attributes.title}
+                  </h1>
+                  <p
+                    className={`${
+                      index === 0 || index === 3
+                        ? "line-clamp-5"
+                        : "line-clamp-3"
+                    }`}
+                  >
+                    {article.attributes.shortDescription}
+                  </p>
+                </div>
+                <div className="flex gap-2 flex-wrap mt-2">
                   {article.attributes.keywords.map(
                     (keyword: string, index: number) => {
-                      const randomColor = getRandomTailwindColor(); // Call function to get a random color as per design requirements
-                      const bgClassName = `bg-${randomColor}-100`;
-                      const textClassName = `text-${randomColor}-400`;
-
                       return (
                         <div
                           key={index}
-                          className={`font-medium text-sm ${bgClassName} ${textClassName} bg-blue-100 text-blue-600 px-4 py-1 rounded-full`}
+                          className={`${"font-medium text-sm px-4 py-1 rounded-full"} ${getKeywordClasses(
+                            keyword.length
+                          )}`}
                         >
                           {keyword}
                         </div>
