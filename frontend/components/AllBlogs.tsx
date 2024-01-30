@@ -1,22 +1,31 @@
 import React from "react";
-import { NextPage } from "next";
 import { IArticle, ICollectionResponse } from "@/lib/types";
 import Image from "next/image";
 import { format } from "date-fns";
+import Pagination from "./common/Pagination";
 
-async function getStrapiData(): Promise<ICollectionResponse<IArticle[]>> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`,
-    {
-      cache: "no-store",
-    } // Prevent caching for fresh data
-  );
-  const data = await res.json();
-  console.log("Response data ->", data);
-  return data;
-}
+const getStrapiData = async (): Promise<ICollectionResponse<IArticle[]>> => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`,
+      {
+        cache: "no-store",
+      } // Prevent caching for fresh data
+    );
 
-const AllBlogs = async () => {
+    if (!res.ok) {
+      throw new Error(`HTTP error ${res.status}`);
+    }
+
+    const data = await res.json();
+    // console.log("Response data ->", data);
+    return data;
+  } catch (error) {
+    throw new Error(`${error}`);
+  }
+};
+
+const AllBlogs = async ({ title }: { title: string }) => {
   const articles: ICollectionResponse<IArticle[]> = await getStrapiData();
   const { data } = articles;
 
@@ -44,7 +53,7 @@ const AllBlogs = async () => {
 
   return (
     <div className="max-w-[1440px] mx-auto max-xl:mx-16 mb-10">
-      <h1 className="text-xl font-bold mt-14">All blog posts</h1>
+      <h1 className="text-xl font-bold mt-14">{title}</h1>
       <div className="grid grid-cols-3 gap-12 mt-6">
         {data.map((article: any, index: number) => {
           const formattedDate = handleDateFormat(article.attributes.createdAt);
@@ -90,6 +99,7 @@ const AllBlogs = async () => {
         })}
       </div>
       <div className="h-[0.5px] w-full bg-gray-400 mt-14 mx-auto opacity-40" />
+      <Pagination />
     </div>
   );
 };

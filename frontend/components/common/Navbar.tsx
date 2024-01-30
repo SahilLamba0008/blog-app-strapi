@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="bg-white dark:bg-[#090D1F] text-black dark:text-white text-lg flex justify-between items-center max-w-[1440px] mx-auto max-xl:mx-16">
+      <div className="text-black dark:text-white text-lg flex justify-between items-center max-w-[1440px] mx-auto max-xl:mx-16">
         <div>LOGO.</div>
         <div>
           <ul className="flex gap-[14px] py-2 items-center">

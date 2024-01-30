@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="flex gap-4 py-8 justify-center">
+    <footer className="flex gap-4 py-8 justify-center w-full">
       <p> &#169;2024</p>
       <Link href={"/"}>
         <p>Twitter</p>
@@ -14,7 +14,7 @@ const Footer = () => {
       <Link href={"/"}>
         <p>Email</p>
       </Link>
-    </div>
+    </footer>
   );
 };
 

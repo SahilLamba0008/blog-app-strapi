@@ -7,12 +7,12 @@ export const navItems: { name: string; href: string }[] = [
     name: "Blogs",
     href: "/blogs",
   },
-  {
-    name: "Projects",
-    href: "/projects",
-  },
-  {
-    name: "Newsletters",
-    href: "/newsletters",
-  },
+  // {
+  //   name: "Projects",
+  //   href: "/projects",
+  // },
+  // {
+  //   name: "Newsletters",
+  //   href: "/newsletters",
+  // },
 ];

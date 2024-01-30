@@ -4,17 +4,26 @@ import { IArticle, ICollectionResponse } from "@/lib/types";
 import Image from "next/image";
 import { format } from "date-fns";
 
-async function getStrapiData(): Promise<ICollectionResponse<IArticle[]>> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`,
-    {
-      cache: "no-store",
-    } // Prevent caching for fresh data
-  );
-  const data = await res.json();
-  console.log("Response data ->", data);
-  return data;
-}
+const getStrapiData = async (): Promise<ICollectionResponse<IArticle[]>> => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`,
+      {
+        cache: "no-store",
+      } // Prevent caching for fresh data
+    );
+
+    if (!res.ok) {
+      throw new Error(`HTTP error ${res.status}`);
+    }
+
+    const data = await res.json();
+    // console.log("Response data ->", data);
+    return data;
+  } catch (error) {
+    throw new Error(`${error}`);
+  }
+};
 
 const HeroSection: NextPage = async () => {
   const articles: ICollectionResponse<IArticle[]> = await getStrapiData();
