@@ -1,6 +1,6 @@
 import React from "react";
 import AllBlogs from "../AllBlogs";
-import CategoriesTabs from "../common/CategoriesTabs";
+import CategoriesTabs from "../common/CategoriesTab";
 
 const BlogsPage = () => {
   return (

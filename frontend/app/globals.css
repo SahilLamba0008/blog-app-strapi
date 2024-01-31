@@ -47,3 +47,52 @@
   width: 0px;
   height: 0px;
 }
+
+.category-swiper .swiper-wrapper {
+  /* background-color: #929292; */
+  height: 80px;
+  cursor: default;
+}
+
+.category-swiper .swiper-slide {
+  height: fit-content;
+}
+
+.swiper-button-disabled {
+  display: none !important;
+}
+
+.category-swiper .swiper-button-prev::after {
+  content: "\279C";
+  rotate: 180deg;
+}
+
+.category-swiper .swiper-button-next::after {
+  content: "\279C";
+}
+
+.category-swiper .swiper-button-prev::after,
+.category-swiper .swiper-button-next::after {
+  position: absolute;
+  color: black;
+  background-color: white;
+  padding: 2px 10px;
+  font-size: 28px;
+  border-radius: 10%;
+  opacity: 0.2;
+  transition: opacity 0.2s ease-in-out;
+  width: fit-content;
+}
+
+.category-swiper .swiper-button-prev:hover::after,
+.category-swiper .swiper-button-next:hover::after {
+  opacity: 1;
+}
+.category-swiper .swiper-button-prev::after {
+  left: -10px;
+  bottom: -16px;
+}
+.category-swiper .swiper-button-next::after {
+  right: -10px;
+  bottom: -16px;
+}

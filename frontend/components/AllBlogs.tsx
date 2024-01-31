@@ -3,6 +3,8 @@ import { IArticle, ICollectionResponse } from "@/lib/types";
 import Image from "next/image";
 import { format } from "date-fns";
 import Pagination from "./common/Pagination";
+import Link from "next/link";
+import { MdArrowOutward } from "react-icons/md";
 
 const getStrapiData = async (): Promise<ICollectionResponse<IArticle[]>> => {
   try {
@@ -53,31 +55,38 @@ const AllBlogs = async ({ title }: { title: string }) => {
 
   return (
     <div className="max-w-[1440px] mx-auto max-xl:mx-16 mb-10">
-      <h1 className="text-xl font-bold mt-14">{title}</h1>
+      {title !== "" && <h1 className="text-xl font-bold mt-14">{title}</h1>}
       <div className="grid grid-cols-3 gap-12 mt-6">
         {data.map((article: any, index: number) => {
           const formattedDate = handleDateFormat(article.attributes.createdAt);
           return (
             <div key={index} className={`w-full h-full gap-6`}>
               <div className="relative flex-1 bg-black dark:bg-white rounded-lg overflow-hidden h-[220px]">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.attributes.Image.data.attributes.url}`}
-                  alt="post-cover"
-                  fill
-                  className="w-full object-cover object-center"
-                />
+                <Link href={`/blog/${article.attributes.slug}`}>
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.attributes.Image.data.attributes.url}`}
+                    alt="post-cover"
+                    fill
+                    className="w-full object-cover object-center"
+                  />
+                </Link>
               </div>
               <div className="flex-1 mt-2">
                 <p className="text-sm text-[#8754ff] dark:text-[#a57eff] font-bold">
                   {formattedDate}
                 </p>
-                <h1 className="font-bold text-xl mb-2">
-                  {article.attributes.title}
-                </h1>
-                <p className="line-clamp-2">
+                <Link href={`/blog/${article.attributes.slug}`}>
+                  <h1 className="font-bold text-xl mb-2 flex justify-between gap-3 group">
+                    {article.attributes.title}
+                    <div className="opacity-40 dark:group-hover:text-cyan-400 group-hover:text-blue-500 group-hover:opacity-100 transition-all duration-300">
+                      <MdArrowOutward size={24} />
+                    </div>
+                  </h1>
+                </Link>
+                <p className="line-clamp-2 pointer-events-none">
                   {article.attributes.shortDescription}
                 </p>
-                <div className="flex gap-2 flex-wrap mt-2">
+                <div className="flex gap-2 flex-wrap mt-2 pointer-events-none">
                   {article.attributes.keywords.map(
                     (keyword: string, index: number) => {
                       return (
