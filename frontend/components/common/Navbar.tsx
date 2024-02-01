@@ -9,9 +9,14 @@ import ThemeSwitcher from "./ThemeSwitcher";
 
 const Navbar = () => {
   const pathName: string = usePathname();
+  const pathMatchesCategory = new RegExp("/category/([^/]+)$").test(pathName);
 
   return (
-    <div>
+    <div
+      className={`w-full sticky top-0 z-20 bg-white dark:bg-[#090D1F] ${
+        pathName !== "/auth" && "shadow-sm dark:shadow-white/20"
+      } py-2`}
+    >
       <div className="text-black dark:text-white text-lg flex justify-between items-center max-w-[1440px] mx-auto max-xl:mx-16">
         <div>LOGO.</div>
         <div>
@@ -22,8 +27,10 @@ const Navbar = () => {
                   <Link href={item.href}>
                     <li
                       className={`transition-all duration-300 ease-in relative before:content-[''] before:absolute before:h-[2px] before:bg-black before:dark:bg-white before:w-0 before:bottom-0 before:rounded-md before:transition-all before:duration-300 before:ease-in-out hover:before:w-full ${
-                        pathName == item.href &&
-                        "text-black before:w-2/4 dark:text-white"
+                        pathName === item.href ||
+                        (pathMatchesCategory && item.name === "Blogs")
+                          ? "text-black before:w-2/4 dark:text-white"
+                          : ""
                       }`}
                     >
                       {item.name}

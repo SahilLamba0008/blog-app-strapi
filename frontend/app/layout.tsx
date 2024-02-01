@@ -19,15 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body
-        className={`h-[100vh] ${inter.className} bg-white dark:bg-[#090D1F]`}
-      >
+      <body className={`${inter.className} bg-white dark:bg-[#090D1F]`}>
         <ThemeProviderWrapper>
-          <div className="h-full w-full flex flex-col">
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
+          <Navbar />
+          {children}
+          <Footer />
         </ThemeProviderWrapper>
       </body>
     </html>

@@ -12,6 +12,9 @@ const getStrapiData = async (): Promise<ICollectionResponse<IArticle[]>> => {
       `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`,
       {
         cache: "no-store",
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+        },
       } // Prevent caching for fresh data
     );
 
@@ -27,7 +30,7 @@ const getStrapiData = async (): Promise<ICollectionResponse<IArticle[]>> => {
   }
 };
 
-const HeroSection: NextPage = async () => {
+const RecentBlogPosts: NextPage = async () => {
   const articles: ICollectionResponse<IArticle[]> = await getStrapiData();
   const { data } = articles;
 
@@ -37,6 +40,7 @@ const HeroSection: NextPage = async () => {
         Date.parse(b.attributes.publishedAt) -
         Date.parse(a.attributes.publishedAt)
     );
+    // console.log(sortedArticles.splice(0, 4));
     return sortedArticles.splice(0, 4);
   };
 
@@ -59,6 +63,8 @@ const HeroSection: NextPage = async () => {
         return "bg-purple-100 text-purple-500";
       case keywordLength === 7:
         return "bg-blue-100 text-blue-500";
+      case keywordLength > 12 && keywordLength <= 14:
+        return "bg-pink-100 text-pink-500";
       default:
         return "bg-orange-100 text-orange-500";
     }
@@ -66,8 +72,9 @@ const HeroSection: NextPage = async () => {
 
   return (
     <div className="max-w-[1440px] mx-auto max-xl:mx-16">
-      {/* drop-shadow-[2px_2px_4px_rgba(230, 6, 6, 1)] */}
-      <h1 className="text-xl font-bold mt-10">Recent blog posts</h1>
+      <h1 className="text-2xl font-bold mt-10 border-l-4 pl-2 border-black/20 dark:border-purple-300/40">
+        Recent blog posts
+      </h1>
       <div className="grid grid-cols-2 gap-14 mt-4">
         {recentBlogPost.map((article: any, index: number) => {
           const formattedDate = handleDateFormat(article.attributes.createdAt);
@@ -94,12 +101,14 @@ const HeroSection: NextPage = async () => {
                     {formattedDate}
                   </p>
                   <Link href={`/blog/${article.attributes.slug}`}>
-                    <h1 className="font-bold text-xl mb-2 flex justify-between gap-3 group">
-                      {article.attributes.title}
+                    <div className="font-bold text-xl mb-2 flex justify-between gap-3 group">
+                      <h1 className="line-clamp-2">
+                        {article.attributes.title}
+                      </h1>
                       <div className="opacity-40 dark:group-hover:text-cyan-400 group-hover:text-blue-500 group-hover:opacity-100 transition-all duration-300">
                         <MdArrowOutward size={24} />
                       </div>
-                    </h1>
+                    </div>
                   </Link>
                   <p
                     className={`${
@@ -136,4 +145,4 @@ const HeroSection: NextPage = async () => {
   );
 };
 
-export default HeroSection;
+export default RecentBlogPosts;
