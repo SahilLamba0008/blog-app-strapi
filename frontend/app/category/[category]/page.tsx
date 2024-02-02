@@ -9,7 +9,7 @@ const getStrapiData = async (
 ): Promise<ICollectionResponse<IArticle[]>> => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?filters[category][slug][$eq]=${slug}&populate=*`,
+      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?filters[category][slug][$eq]=${slug}&populate=*&_limit=2`,
       {
         cache: "no-store",
         headers: {
@@ -56,7 +56,9 @@ const Category = async () => {
         </div>
       ) : (
         <div className="h-full w-full flex flex-col items-center flex-1">
-          <h1 className="font-bold text-2xl bg-gradient-to-r from-blue-500 from-10% via-emerald-500 via-30% to-cyan-500 to-90% bg-clip-text text-transparent">Uh-oh, it seems our blog garden is a bit empty!</h1>
+          <h1 className="font-bold text-2xl bg-gradient-to-r from-blue-500 from-10% via-emerald-500 via-30% to-cyan-500 to-90% bg-clip-text text-transparent">
+            Uh-oh, it seems our blog garden is a bit empty!
+          </h1>
           <Image
             src={"/images/noblogs.svg"}
             alt="no blogs found"

@@ -4,7 +4,7 @@ import { IoMdSearch } from 'react-icons/io'
 const SearchInput = () => {
   return (
     <div className="flex justify-end mb-4">
-        <div className="flex items-center gap-1 bg-slate-200 dark:bg-blue-200/20 px-4 py-[6px] rounded-md w-[300px]">
+        <div className="flex items-center gap-1 bg-slate-200 dark:bg-blue-200/20 px-4 py-2 rounded-md w-[300px]">
           <input
             type="text"
             id="search"

@@ -38,7 +38,8 @@ const BlogCard = ({ article }: { article: any }) => {
           <Image
             src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.attributes.Image.data.attributes.url}`}
             alt="post-cover"
-            fill
+            height={500}
+            width={500}
             className="w-full object-cover object-center"
           />
         </Link>

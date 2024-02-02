@@ -4,31 +4,37 @@ import Pagination from "./common/Pagination";
 import SearchInput from "./common/SearchInput";
 import BlogCard from "./common/BlogCard";
 
-const getStrapiData = async (): Promise<ICollectionResponse<IArticle[]>> => {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*`,
-      {
-        cache: "no-store",
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-        },
-      } // Prevent caching for fresh data
-    );
-
-    if (!res.ok) {
-      throw new Error(`HTTP error ${res.status}`);
-    }
-
-    const data = await res.json();
-    // console.log("Response data ->", data);
-    return data;
-  } catch (error) {
-    throw new Error(`${error}`);
-  }
-};
-
 const AllBlogs = async ({ title }: { title: string }) => {
+  var queryPage: any;
+
+  const getStrapiData = async (): Promise<ICollectionResponse<IArticle[]>> => {
+    try {
+      const res = await fetch(
+        `${
+          process.env.NEXT_PUBLIC_STRAPI_API_URL
+        }/api/articles?populate=*&pagination[pageSize]=6&pagination[page]=${
+          queryPage ? queryPage : 1
+        }`,
+        {
+          cache: "no-store",
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+          },
+        } // Prevent caching for fresh data
+      );
+
+      if (!res.ok) {
+        throw new Error(`HTTP error ${res.status}`);
+      }
+
+      const data = await res.json();
+      // console.log("Response data ->", data);
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  };
+
   const articles: ICollectionResponse<IArticle[]> = await getStrapiData();
   const { data } = articles;
 
@@ -52,7 +58,7 @@ const AllBlogs = async ({ title }: { title: string }) => {
         })}
       </div>
       <div className="h-[0.5px] w-full bg-gray-400 mt-14 mx-auto opacity-40" />
-      <Pagination />
+      <Pagination pageIndex={1} totalPages={5} blogsPerPage={5} />
     </div>
   );
 };

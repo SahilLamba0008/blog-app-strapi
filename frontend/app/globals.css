@@ -20,6 +20,12 @@
   }
 }
 
+@layer components {
+  .disabled {
+    @apply opacity-30 cursor-not-allowed;
+  }
+}
+
 .bg-white-after-focus:focus-visible,
 .bg-white-after-focus:not(:placeholder-shown) {
   background-color: white;
