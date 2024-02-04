@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^1.6.5",
     "date-fns": "^3.3.1",
+    "framer-motion": "^11.0.3",
     "next": "14.0.4",
     "next-themes": "^0.2.1",
     "react": "^18",
@@ -19,6 +20,7 @@
     "swiper": "^11.0.5",
     "swr": "^2.2.4",
     "tw-elements": "^1.1.0",
+    "use-debounce": "^10.0.0",
     "zod": "^3.22.4",
     "zustand": "^4.5.0"
   },
@@ -27,6 +29,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.16",
+    "daisyui": "^4.6.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8.4.33",

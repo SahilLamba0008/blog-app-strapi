@@ -3,33 +3,17 @@ import { IArticle, ICollectionResponse } from "@/lib/types";
 import React from "react";
 import { headers } from "next/headers";
 import Image from "next/image";
+import Pagination from "@/components/common/Pagination";
 
-const getStrapiData = async (
-  slug: string | null
-): Promise<ICollectionResponse<IArticle[]>> => {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?filters[category][slug][$eq]=${slug}&populate=*&_limit=2`,
-      {
-        cache: "no-store",
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-        },
-      } // Prevent caching for fresh data
-    );
+const Category = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+  const page = searchParams["page"] ?? "1";
+  const blogs_per_page = 6;
+  const searchInput = searchParams["search"] ?? "";
 
-    if (!res.ok) {
-      throw new Error(`HTTP error ${res.status}`);
-    }
-
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    throw new Error(`${error}`);
-  }
-};
-
-const Category = async () => {
   const headersList = headers();
   const path = headersList.get("x-pathname");
   const pathParts: string[] = path!.split("/");
@@ -38,12 +22,38 @@ const Category = async () => {
   const slug: string | null =
     pathParts.length >= 2 ? pathParts[pathParts.length - 1] : null;
 
-  // console.log(slug);
-  // console.log(headersList.get("x-pathname"));
+  const getStrapiData = async (
+    slug: string | null
+  ): Promise<ICollectionResponse<IArticle[]>> => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?filters[category][slug][$eq]=${slug}&populate=*&pagination[pageSize]=${blogs_per_page}&pagination[page]=${page}&filters[title][$containsi]=${searchInput}`,
+        {
+          cache: "no-store",
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+          },
+        } // Prevent caching for fresh data
+      );
 
+      if (!res.ok) {
+        throw new Error(`HTTP error ${res.status}`);
+      }
+
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  };
   const articles: ICollectionResponse<IArticle[]> = await getStrapiData(slug);
 
   const { data } = articles;
+  const { meta } = articles;
+
+  const currentPage = meta.pagination.page;
+  const totalPages = meta.pagination.pageCount;
+
   return (
     <div className="h-full w-full">
       {data.length !== 0 ? (
@@ -68,6 +78,8 @@ const Category = async () => {
           />
         </div>
       )}
+      <div className="h-[0.5px] w-full bg-gray-400 mt-14 mx-auto opacity-40" />
+      <Pagination pageIndex={currentPage} totalPages={totalPages} />
     </div>
   );
 };

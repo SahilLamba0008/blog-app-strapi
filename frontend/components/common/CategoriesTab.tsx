@@ -34,8 +34,8 @@ const CategoriesTab = async () => {
   return (
     <div className="max-w-[1440px] mx-auto my-8">
       <div className="flex items-center justify-between mb-2">
-        {/* <CreateBlogButton /> */}
-        {/* <SearchInput /> */}
+        <CreateBlogButton />
+        <SearchInput />
       </div>
       <CategoriesList categories={categories} />
     </div>

@@ -3,7 +3,7 @@ import React from "react";
 import { navItems } from "@/constants/data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { GrFormNextLink } from "react-icons/gr";
+import { FaBookReader } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import ThemeSwitcher from "./ThemeSwitcher";
 
@@ -13,12 +13,16 @@ const Navbar = () => {
 
   return (
     <div
-      className={`w-full sticky top-0 z-20 bg-white dark:bg-[#090D1F] ${
+      className={`w-full sticky top-0 z-10 bg-white dark:bg-[#090D1F] ${
         pathName !== "/auth" && "shadow-sm dark:shadow-white/20"
       } py-2`}
     >
       <div className="text-black dark:text-white text-lg flex justify-between items-center max-w-[1440px] mx-auto max-xl:mx-16">
-        <div>LOGO.</div>
+        {/* <p className="absolute z-50 -top-2 -left-2">&#8482;</p> */}
+        <div className="flex gap-1 relative">
+          <FaBookReader size={28} />
+          <span className="font-black mt-1">Blogger</span>
+        </div>
         <div>
           <ul className="flex gap-[14px] py-2 items-center">
             {navItems.map((item, index) => {

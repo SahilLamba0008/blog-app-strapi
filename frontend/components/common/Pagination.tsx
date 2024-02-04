@@ -1,11 +1,6 @@
 "use client";
 import { TDirection } from "@/lib/types";
-import {
-  redirect,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import {
   MdOutlineArrowForwardIos,
@@ -14,11 +9,9 @@ import {
 
 const Pagination = ({
   pageIndex,
-  blogsPerPage,
   totalPages,
 }: {
   pageIndex: number; // page index
-  blogsPerPage: number; // articles per page
   totalPages: number; // total pages
 }) => {
   const pathName: string = usePathname();
@@ -55,9 +48,7 @@ const Pagination = ({
         type="button"
         className={`transition-all duration-300 ease-in-out bg-black dark:bg-white text-white dark:text-black rounded-md px-4 py-2 flex items-center gap-2 
         ${
-          isPrevDisabled()
-            ? "disabled"
-            : "hover:bg-white hover:text-black relative hover:before:absolute hover:before:border-2 hover:before:h-full hover:before:w-full hover:before:left-0 hover:before:rounded-md hover:before:border-black/20 dark:hover:before:border-white/60 dark:hover:text-white dark:hover:bg-transparent dark:active:text-black dark:active:bg-white hover:opacity-40 active:opacity-100 active:bg-black active:text-white"
+          isPrevDisabled() ? "disabled" : "active:ring-4 active:ring-black/40"
         }`}
         onClick={() => handlePagination(-1)}
       >
@@ -65,13 +56,30 @@ const Pagination = ({
         <MdOutlineArrowBackIos />
         Prev
       </button>
+      <div id="page_indexes" className="flex gap-2 items-center">
+        {Array.from({ length: totalPages }, (_, index) => {
+          return (
+            <button
+              key={index}
+              className={`px-3 py-2 rounded-md border-2 ${
+                index + 1 === pageIndex
+                  ? "bg-black text-white border-black"
+                  : "border-black/20 text-black/30"
+              }`}
+              onClick={() => {
+                router.push(`${pathName}?page=${index + 1}`);
+              }}
+            >
+              <p>{index + 1}</p>
+            </button>
+          );
+        })}
+      </div>
       <button
         type="button"
         className={`transition-all duration-300 ease-in-out bg-black dark:bg-white text-white dark:text-black rounded-md px-4 py-2 flex items-center gap-2 
         ${
-          isNextDisabled()
-            ? "disabled"
-            : "hover:bg-white hover:text-black relative hover:before:absolute hover:before:border-2 hover:before:h-full hover:before:w-full hover:before:left-0 hover:before:rounded-md hover:before:border-black/20 dark:hover:before:border-white/60 dark:hover:text-white dark:hover:bg-transparent dark:active:text-black dark:active:bg-white hover:opacity-40 active:opacity-100 active:bg-black active:text-white"
+          isNextDisabled() ? "disabled" : "active:ring-4 active:ring-black/40"
         }`}
         onClick={() => handlePagination(1)}
       >

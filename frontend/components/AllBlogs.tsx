@@ -1,20 +1,25 @@
+"use server";
 import React from "react";
 import { IArticle, ICollectionResponse } from "@/lib/types";
 import Pagination from "./common/Pagination";
 import SearchInput from "./common/SearchInput";
 import BlogCard from "./common/BlogCard";
 
-const AllBlogs = async ({ title }: { title: string }) => {
-  var queryPage: any;
-
+const AllBlogs = async ({
+  title,
+  pageIndex,
+  blogsPerPage,
+  searchInput,
+}: {
+  title: string;
+  pageIndex: string | string[];
+  blogsPerPage: number;
+  searchInput?: string | string[];
+}) => {
   const getStrapiData = async (): Promise<ICollectionResponse<IArticle[]>> => {
     try {
       const res = await fetch(
-        `${
-          process.env.NEXT_PUBLIC_STRAPI_API_URL
-        }/api/articles?populate=*&pagination[pageSize]=6&pagination[page]=${
-          queryPage ? queryPage : 1
-        }`,
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*&pagination[pageSize]=${blogsPerPage}&pagination[page]=${pageIndex}&filters[title][$containsi]=${searchInput}`,
         {
           cache: "no-store",
           headers: {
@@ -37,6 +42,12 @@ const AllBlogs = async ({ title }: { title: string }) => {
 
   const articles: ICollectionResponse<IArticle[]> = await getStrapiData();
   const { data } = articles;
+  const { meta } = articles;
+  console.log(meta.pagination.page);
+
+  const currentPage = meta.pagination.page;
+  const totalPages = meta.pagination.pageCount;
+  const totalBlogsPerPage = 3; /* use : meta.pagination.pageSize || Add: Custom value*/
 
   return (
     <div className="max-w-[1440px] mx-auto max-xl:mx-16 mb-10">
@@ -58,7 +69,7 @@ const AllBlogs = async ({ title }: { title: string }) => {
         })}
       </div>
       <div className="h-[0.5px] w-full bg-gray-400 mt-14 mx-auto opacity-40" />
-      <Pagination pageIndex={1} totalPages={5} blogsPerPage={5} />
+      <Pagination pageIndex={currentPage} totalPages={totalPages} />
     </div>
   );
 };

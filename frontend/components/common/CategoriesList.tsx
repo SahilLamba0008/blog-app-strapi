@@ -36,9 +36,9 @@ const CategoriesList = ({ categories }: { categories: ICategory[] }) => {
             <div
               className={`px-4 py-2 ${
                 pathName === "/blogs"
-                  ? "bg-black text-white dark:bg-white dark:text-black"
-                  : "rounded-md border-2 opacity-50"
-              } rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:opacity-100 transition-all duration-300`}
+                  ? "bg-black text-white dark:bg-white dark:text-black border-black"
+                  : "rounded-md opacity-50"
+              } rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:opacity-100 transition-all duration-300 hover:border-black border-2`}
             >
               All
             </div>
@@ -54,9 +54,9 @@ const CategoriesList = ({ categories }: { categories: ICategory[] }) => {
                       category.attributes.slug,
                       category.attributes.title
                     )
-                      ? "bg-black text-white dark:bg-white dark:text-black"
-                      : "rounded-md border-2 opacity-50"
-                  }`}
+                      ? "bg-black text-white dark:bg-white dark:text-black border-black"
+                      : "rounded-md opacity-50"
+                  } hover:border-black`}
                 >
                   {category.attributes.title}
                 </div>

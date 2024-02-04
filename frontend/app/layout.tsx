@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className={`${inter.className} bg-white dark:bg-[#090D1F]`}>
+      <body
+        className={`${inter.className} bg-white dark:bg-[#090D1F] text-black dark:text-white scroll-smooth`}
+      >
         <ThemeProviderWrapper>
           <Navbar />
           {children}

@@ -7,24 +7,11 @@ const AuthFormContainer = () => {
   const [currentForm, setCurrentForm] =
     useState<boolean>(
       true
-    ); /* if true then show SignUpForm else show LogInForm */
+    ); /* if true then show Login form else show Signup form */
 
   return (
     <div className="flex flex-col justify-center h-full">
       {currentForm === true ? (
-        <>
-          <SignUpForm />
-          <h1 className="text-center mt-4">
-            Already have account ?
-            <span
-              className="cursor-pointer font-bold underline"
-              onClick={() => setCurrentForm(!currentForm)}
-            >
-              Log in
-            </span>
-          </h1>
-        </>
-      ) : (
         <>
           <LogInForm />
           <h1 className="text-center mt-4">
@@ -34,6 +21,19 @@ const AuthFormContainer = () => {
               onClick={() => setCurrentForm(!currentForm)}
             >
               Sign up
+            </span>
+          </h1>
+        </>
+      ) : (
+        <>
+          <SignUpForm />
+          <h1 className="text-center mt-4">
+            Already have account ?
+            <span
+              className="cursor-pointer font-bold underline"
+              onClick={() => setCurrentForm(!currentForm)}
+            >
+              Log in
             </span>
           </h1>
         </>
