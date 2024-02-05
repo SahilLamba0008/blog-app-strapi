@@ -1,6 +1,6 @@
 import CategoriesTab from "@/components/common/CategoriesTab";
 
-export default function CategoriesLayout({
+export default function BlogsLayout({
   children,
 }: {
   children: React.ReactNode;

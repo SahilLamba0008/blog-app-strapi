@@ -47,7 +47,6 @@ const AllBlogs = async ({
 
   const currentPage = meta.pagination.page;
   const totalPages = meta.pagination.pageCount;
-  const totalBlogsPerPage = 3; /* use : meta.pagination.pageSize || Add: Custom value*/
 
   return (
     <div className="max-w-[1440px] mx-auto max-xl:mx-16 mb-10">
@@ -63,7 +62,7 @@ const AllBlogs = async ({
         {data.map((article: any, index: number) => {
           return (
             <div key={index}>
-              <BlogCard article={article} />
+              <BlogCard article={article} id={article.id} />
             </div>
           );
         })}

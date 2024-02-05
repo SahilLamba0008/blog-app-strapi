@@ -56,16 +56,16 @@ const Pagination = ({
         <MdOutlineArrowBackIos />
         Prev
       </button>
-      <div id="page_indexes" className="flex gap-2 items-center">
+      <div id="page_indexes" className="flex gap-3 items-center">
         {Array.from({ length: totalPages }, (_, index) => {
           return (
             <button
               key={index}
-              className={`px-3 py-2 rounded-md border-2 ${
+              className={`px-3 py-2 rounded-md ring-2 ${
                 index + 1 === pageIndex
-                  ? "bg-black text-white border-black"
-                  : "border-black/20 text-black/30"
-              }`}
+                  ? "bg-black text-white dark:text-black dark:bg-white ring-black dark:ring-white font-bold "
+                  : "ring-black/10 dark:ring-white/50 dark:text-white/40 text-black/20 hover:text-black hover:font-bold dark:hover:text-white dark:hover:ring-white hover:ring-black"
+              } transition-all duration-300 ease-in-out`}
               onClick={() => {
                 router.push(`${pathName}?page=${index + 1}`);
               }}

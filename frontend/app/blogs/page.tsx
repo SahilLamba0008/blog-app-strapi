@@ -1,5 +1,4 @@
 import AllBlogs from "@/components/AllBlogs";
-import CategoriesTab from "@/components/common/CategoriesTab";
 import React from "react";
 
 const page = ({
@@ -14,9 +13,8 @@ const page = ({
   console.log("Search Params All Blogs", page, blogs_per_page);
 
   return (
-    <div className="px-28">
-      <CategoriesTab />
-      <div className="dark:bg-[#090D1F] dark:text-white" id="blogs_page">
+    <div>
+      <div className="dark:bg-[#090D1F] dark:text-white">
         <AllBlogs
           title=""
           pageIndex={page}

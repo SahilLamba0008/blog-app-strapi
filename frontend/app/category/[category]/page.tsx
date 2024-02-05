@@ -60,7 +60,7 @@ const Category = async ({
         <div className="grid grid-cols-3 gap-12 mt-6">
           {data.map((article: any, index: number) => (
             <div key={index}>
-              <BlogCard article={article} />
+              <BlogCard article={article} id={article.id} />
             </div>
           ))}
         </div>

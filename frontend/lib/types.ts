@@ -40,8 +40,7 @@ export interface IImageData {
 export interface IAuthor {
   data: {
     attributes: {
-      firstName: string;
-      lastName: string;
+      username: string;
       avatar: {
         data: {
           attributes: {
@@ -72,6 +71,7 @@ export interface IArticleAttributes {
 export interface IArticle {
   id: number;
   attributes: IArticleAttributes;
+  author?: IAuthor;
 }
 
 export type TDirection = -1 | 1;
