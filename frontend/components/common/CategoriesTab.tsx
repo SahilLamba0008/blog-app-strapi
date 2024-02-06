@@ -3,33 +3,10 @@ import React from "react";
 import CategoriesList from "./CategoriesList";
 import SearchInput from "./SearchInput";
 import CreateBlogButton from "./CreateBlogButton";
-
-const getStrapiCategories = async (): Promise<ICategory[]> => {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/categories`,
-      {
-        cache: "no-store",
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-        },
-      }
-    );
-
-    if (!res.ok) {
-      throw new Error(`HTTP error ${res.status}`);
-    }
-
-    const categories = await res.json();
-    // console.log("Response categories ->", categories.data);
-    return categories.data;
-  } catch (error) {
-    throw new Error(`${error}`);
-  }
-};
+import { getBlogsCategories } from "@/utils/functions";
 
 const CategoriesTab = async () => {
-  const categories: ICategory[] = await getStrapiCategories();
+  const categories: ICategory[] = await getBlogsCategories();
 
   return (
     <div className="max-w-[1440px] mx-auto my-8">

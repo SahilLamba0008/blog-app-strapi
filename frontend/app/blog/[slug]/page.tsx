@@ -1,8 +1,25 @@
 import { IArticle, ICollectionResponse } from "@/lib/types";
-import { getBlogData, handleDateFormat } from "@/utils/functions";
+import { getBlogData, totalPublishedDays } from "@/utils/functions";
 import Image from "next/image";
 import React from "react";
 import Markdown from "react-markdown";
+import BlogAuthorDetails from "@/components/common/BlogAuthorDetails";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+  const transformedSlug = slug
+    .replace(/-([a-z])/g, (_, match) => ` ${match.toUpperCase()}`)
+    .replace(/^\w/, (match) => match.toUpperCase());
+  console.log("Meta->", slug, transformedSlug);
+  return {
+    title: transformedSlug,
+  };
+}
 
 const page = async ({
   searchParams,
@@ -17,54 +34,29 @@ const page = async ({
 
   const blog = data[0].attributes;
   const author = data[0].attributes.author;
-  const blogDate = handleDateFormat(blog.createdAt);
+  const category = data[0].attributes.category.data.attributes.title;
+  const blogPublishedDays = totalPublishedDays(blog.createdAt);
+
   return (
     <div className="max-w-[850px] mx-auto">
-      <div className="w-full h-full mt-10">
-        <Image
-          src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${blog.Image.data.attributes.url}`}
-          alt="blog cover"
-          height={1000}
-          width={1000}
-          className="h-full w-full rounded-xl ring-2 ring-black/10 dark:ring-white/20"
-        />
-      </div>
-      <div className="mt-10 flex justify-between gap-20">
-        <div>
-          <h1 className="font-bold text-3xl">{blog.title}</h1>
-          <p className="text-sm text-[#8754ff] dark:text-[#a57eff] font-bold">
-            {blogDate}
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <div>
-            <p className="font-bold">Author:</p>
-            <p className="text-sm text-green-600 font-bold -mt-1">
-              {author.data.attributes.username}
-            </p>
-          </div>
-          <Image
-            src={"/images/user.jpg"}
-            alt="user"
-            height={250}
-            width={250}
-            className="h-[50px] w-[50px] object-cover rounded-full"
-          />
-        </div>
-      </div>
+      <Image
+        src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${blog.Image.data.attributes.url}`}
+        alt="blog cover"
+        height={1000}
+        width={1000}
+        className="h-full w-full rounded-xl ring-2 ring-black/10 dark:ring-white/20  mt-10"
+      />
+      <h1 className="font-bold text-5xl mt-6">{blog.title}</h1>
 
-      <>{/* Buttons for Interaction : Like,Share,Comment,Save */}</>
-
-      <div className="mt-10 text-md flex flex-col gap-4">
+      <div className="h-[0.5px] w-full bg-gray-400 my-5 mx-auto opacity-40" />
+      <BlogAuthorDetails
+        category={category}
+        blogPublishedDays={blogPublishedDays}
+        author={author}
+      />
+      <div className="h-[0.5px] w-full bg-gray-400 my-4 mx-auto opacity-40" />
+      <div className="text-md flex flex-col gap-4 mt-10 font-blogbody text-[18px] blog dark:text-white">
         <Markdown>{blog.body}</Markdown>
-      </div>
-
-      <>{/* Buttons for Interaction : Like,Share,Comment,Save */}</>
-      <div>
-        {/* More Blogs by author */}
-      </div>
-      <div>
-        {/* More Blogs in same category */}
       </div>
     </div>
   );

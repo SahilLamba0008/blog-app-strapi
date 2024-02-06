@@ -19,10 +19,12 @@ const Navbar = () => {
     >
       <div className="text-black dark:text-white text-lg flex justify-between items-center max-w-[1440px] mx-auto max-xl:mx-16">
         {/* <p className="absolute z-50 -top-2 -left-2">&#8482;</p> */}
-        <div className="flex gap-1 relative">
-          <FaBookReader size={28} />
-          <span className="font-black mt-1">Blogger</span>
-        </div>
+        <Link href={"/"}>
+          <div className="flex gap-1 relative">
+            <FaBookReader size={28} />
+            <span className="font-black mt-1">Blogger</span>
+          </div>
+        </Link>
         <div>
           <ul className="flex gap-[14px] py-2 items-center">
             {navItems.map((item, index) => {

@@ -8,6 +8,10 @@ export interface ICategory {
   attributes: ICategoryAttribute;
 }
 
+export interface ICategoryData {
+  data: ICategory;
+}
+
 export interface IPagination {
   page: number;
   pageSize: number;
@@ -66,12 +70,12 @@ export interface IArticleAttributes {
   publishedAt: string;
   author: IAuthor;
   keywords: string[];
+  category: ICategoryData;
 }
 
 export interface IArticle {
   id: number;
   attributes: IArticleAttributes;
-  author?: IAuthor;
 }
 
 export type TDirection = -1 | 1;

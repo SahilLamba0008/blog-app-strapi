@@ -4,6 +4,7 @@ import { IArticle, ICollectionResponse } from "@/lib/types";
 import Pagination from "./common/Pagination";
 import SearchInput from "./common/SearchInput";
 import BlogCard from "./common/BlogCard";
+import { getAllBlogswithPagination } from "@/utils/functions";
 
 const AllBlogs = async ({
   title,
@@ -16,31 +17,9 @@ const AllBlogs = async ({
   blogsPerPage: number;
   searchInput?: string | string[];
 }) => {
-  const getStrapiData = async (): Promise<ICollectionResponse<IArticle[]>> => {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?populate=*&pagination[pageSize]=${blogsPerPage}&pagination[page]=${pageIndex}&filters[title][$containsi]=${searchInput}`,
-        {
-          cache: "no-store",
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-          },
-        } // Prevent caching for fresh data
-      );
 
-      if (!res.ok) {
-        throw new Error(`HTTP error ${res.status}`);
-      }
-
-      const data = await res.json();
-      // console.log("Response data ->", data);
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
-  };
-
-  const articles: ICollectionResponse<IArticle[]> = await getStrapiData();
+  const articles: ICollectionResponse<IArticle[]> =
+    await getAllBlogswithPagination(blogsPerPage, pageIndex, searchInput);
   const { data } = articles;
   const { meta } = articles;
   console.log(meta.pagination.page);

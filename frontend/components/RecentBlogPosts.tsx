@@ -6,12 +6,12 @@ import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 import {
   getKeywordClasses,
-  getStrapiData,
+  getAllBlogs,
   handleDateFormat,
 } from "@/utils/functions";
 
 const RecentBlogPosts: NextPage = async () => {
-  const articles: ICollectionResponse<IArticle[]> = await getStrapiData();
+  const articles: ICollectionResponse<IArticle[]> = await getAllBlogs();
   const { data } = articles;
 
   const handleRecentBlogPost = (blogPosts: IArticle[]): IArticle[] => {

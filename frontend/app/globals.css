@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=Newsreader:opsz,wght@6..72,200;6..72,400&family=Overpass:wght@100;300;400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,7 +24,7 @@
 
 @layer components {
   .disabled {
-    @apply opacity-30 cursor-not-allowed;
+    @apply opacity-5 cursor-not-allowed;
   }
 }
 
@@ -40,11 +42,11 @@
   border-radius: 10px;
 }
 
-.dark-scrollbar::-webkit-scrollbar {
+.dark::-webkit-scrollbar {
   width: 8px;
 }
 
-.dark-scrollbar::-webkit-scrollbar-thumb {
+.dark ::-webkit-scrollbar-thumb {
   background: #4b23a8;
   border-radius: 10px;
 }
@@ -55,7 +57,6 @@
 }
 
 .category-swiper .swiper-wrapper {
-  /* background-color: #929292; */
   height: 80px;
   cursor: default;
 }
@@ -101,4 +102,45 @@
 .category-swiper .swiper-button-next::after {
   right: -10px;
   bottom: -16px;
+}
+
+.blog {
+  line-height: 30px;
+}
+
+.blog ol li {
+  list-style: number;
+  margin-left: 10px;
+  color: #646464;
+  margin-top: 10px;
+}
+.blog ul li {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-top: 2px;
+  line-height: 26px;
+  color: black;
+}
+
+.blog strong {
+  color: #7305d3;
+}
+.dark .blog strong {
+  color: #c684ff;
+}
+.blog ol li strong {
+  color: #646464;
+  text-decoration: none;
+}
+.dark .blog ol li strong {
+  color: #ffffff;
+  opacity: 0.6;
+  text-decoration: none;
+}
+.dark .blog ol li {
+  color: #fbfbfb;
+}
+.blog ol li {
+  color: #121114;
+  text-decoration: none;
 }

@@ -16,8 +16,13 @@ const config: Config = {
       aspectRatio: {
         "4/3": "4 / 3",
       },
+      fontFamily: {
+        blogbody: ["OverPass"],
+        author: ["OverPass"],
+      },
     },
   },
   darkMode: "class",
 };
+
 export default config;

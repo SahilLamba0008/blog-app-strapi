@@ -4,6 +4,19 @@ import React from "react";
 import { headers } from "next/headers";
 import Image from "next/image";
 import Pagination from "@/components/common/Pagination";
+import { getBlogsPerCategory } from "@/utils/functions";
+import { Metadata } from "next";
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+  return {
+    title: slug ?? "Blogs",
+  };
+}
 
 const Category = async ({
   searchParams,
@@ -22,31 +35,12 @@ const Category = async ({
   const slug: string | null =
     pathParts.length >= 2 ? pathParts[pathParts.length - 1] : null;
 
-  const getStrapiData = async (
-    slug: string | null
-  ): Promise<ICollectionResponse<IArticle[]>> => {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/articles?filters[category][slug][$eq]=${slug}&populate=*&pagination[pageSize]=${blogs_per_page}&pagination[page]=${page}&filters[title][$containsi]=${searchInput}`,
-        {
-          cache: "no-store",
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-          },
-        } // Prevent caching for fresh data
-      );
-
-      if (!res.ok) {
-        throw new Error(`HTTP error ${res.status}`);
-      }
-
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
-  };
-  const articles: ICollectionResponse<IArticle[]> = await getStrapiData(slug);
+  const articles: ICollectionResponse<IArticle[]> = await getBlogsPerCategory(
+    slug,
+    blogs_per_page,
+    page,
+    searchInput
+  );
 
   const { data } = articles;
   const { meta } = articles;

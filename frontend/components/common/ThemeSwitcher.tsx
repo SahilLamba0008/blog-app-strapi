@@ -11,15 +11,6 @@ const ThemeSwitcher = () => {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    // console.log("use effect called", resolvedTheme);
-    if (resolvedTheme === "dark") {
-      document.body.classList.add("dark-scrollbar");
-    } else {
-      document.body.classList.remove("dark-scrollbar");
-    }
-  }, [resolvedTheme]);
-
   // to avoid layout shift
   if (!mounted)
     return (

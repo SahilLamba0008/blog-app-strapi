@@ -50,7 +50,7 @@ const MyModal = ({ setIsModalOpen }: { setIsModalOpen: any }) => {
         <div className="flex gap-4 items-center justify-center">
           <Link href={"/auth"}>
             <button
-              className="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded-md border-2 border-black/60 transition-all duration-300 focus:ring-4 focus:ring-black/40 dark:focus:ring-white/70 flex items-center gap-1"
+              className="px-4 py-2 bg-black text-white dark:bg-white ring-2 dark:text-black rounded-md border-2 border-black/60 transition-all duration-300 focus:ring-4 focus:ring-black/40 dark:focus:ring-white/70 flex items-center gap-1"
               onClick={() => setIsModalOpen((prev: any) => !prev)}
             >
               Login Now <GrLinkNext size={20} />
