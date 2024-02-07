@@ -4,7 +4,11 @@ import Image from "next/image";
 import React from "react";
 import Markdown from "react-markdown";
 import BlogAuthorDetails from "@/components/common/BlogAuthorDetails";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
+import {
+  BlocksRenderer,
+  type BlocksContent,
+} from "@strapi/blocks-react-renderer";
 
 type Props = {
   params: { slug: string };
@@ -55,7 +59,7 @@ const page = async ({
         author={author}
       />
       <div className="h-[0.5px] w-full bg-gray-400 my-4 mx-auto opacity-40" />
-      <div className="text-md flex flex-col gap-4 mt-10 font-blogbody text-[18px] blog dark:text-white">
+      <div className="text-md mt-10 font-blogbody prose prose-light dark:prose-dark dark:text-white max-w-full mx-auto my-10 text-[18px] blog">
         <Markdown>{blog.body}</Markdown>
       </div>
     </div>

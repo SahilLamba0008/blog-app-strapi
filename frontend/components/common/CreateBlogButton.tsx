@@ -5,7 +5,7 @@ import { IoCloudUpload } from "react-icons/io5";
 import MyModal from "./modal/MyModal";
 const CreateBlogButton = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const isAuth = false; // Available to only authenticated users ------ to be made dynamic later
+  const isAuth = true; // Available to only authenticated users ------ to be made dynamic later
   const router = useRouter();
 
   const handleWritePostClick = () => {
