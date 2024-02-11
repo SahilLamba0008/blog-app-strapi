@@ -17,7 +17,6 @@ const AllBlogs = async ({
   blogsPerPage: number;
   searchInput?: string | string[];
 }) => {
-
   const articles: ICollectionResponse<IArticle[]> =
     await getAllBlogswithPagination(blogsPerPage, pageIndex, searchInput);
   const { data } = articles;

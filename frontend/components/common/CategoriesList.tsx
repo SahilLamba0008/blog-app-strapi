@@ -32,7 +32,7 @@ const CategoriesList = ({ categories }: { categories: ICategory[] }) => {
         className="category-swiper cursor-pointer text-center"
       >
         <SwiperSlide>
-          <Link href={"/blogs"}>
+          <Link href={"/blogs"} prefetch={false} scroll={false}>
             <div
               className={`px-4 py-2 ${
                 pathName === "/blogs"
@@ -47,7 +47,10 @@ const CategoriesList = ({ categories }: { categories: ICategory[] }) => {
         {categories.map((category: ICategory, index: number) => {
           return (
             <SwiperSlide key={index}>
-              <Link href={`/category/${category.attributes.slug}`}>
+              <Link
+                href={`/category/${category.attributes.slug}`}
+                scroll={false}
+              >
                 <div
                   className={`px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis rounded-md border-2 hover:opacity-100 hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white transition-all duration-300 ${
                     isActiveTab(

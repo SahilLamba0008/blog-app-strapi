@@ -12,9 +12,11 @@ const SearchInput = () => {
 
   useEffect(() => {
     if (!value) {
-      router.push(pathName);
+      router.push(pathName, { scroll: false });
     } else {
-      router.push(`${pathName}?search=${value}`);
+      router.push(`${pathName}?search=${value}`, {
+        scroll: false,
+      }); /* will not scroll to top when search anything */
     }
   }, [value, router, pathName]);
 

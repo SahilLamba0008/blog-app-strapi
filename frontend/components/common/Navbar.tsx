@@ -30,7 +30,7 @@ const Navbar = () => {
             {navItems.map((item, index) => {
               return (
                 <div key={index}>
-                  <Link href={item.href}>
+                  <Link href={item.href} prefetch={false}>
                     <li
                       className={`transition-all duration-300 ease-in relative before:content-[''] before:absolute before:h-[2px] before:bg-black before:dark:bg-white before:w-0 before:bottom-0 before:rounded-md before:transition-all before:duration-300 before:ease-in-out hover:before:w-full ${
                         pathName === item.href ||

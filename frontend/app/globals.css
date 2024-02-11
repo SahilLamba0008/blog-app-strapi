@@ -107,3 +107,18 @@
 .blog img {
   margin: 0 auto;
 }
+
+.ql-toolbar.ql-snow {
+  border: 2px solid #bdbdbd6f !important;
+  border-radius: 6px;
+}
+.dark .ql-toolbar.ql-snow {
+  background-color: #ffffff !important;
+}
+
+.ql-container.ql-snow {
+  border: 2px solid #bdbdbd6f !important;
+  margin-top: 6px;
+  border-radius: 6px;
+  font-size: 17px;
+}
