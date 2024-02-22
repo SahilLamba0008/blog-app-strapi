@@ -32,7 +32,7 @@ const CategoriesList = ({ categories }: { categories: ICategory[] }) => {
         className="category-swiper cursor-pointer text-center"
       >
         <SwiperSlide>
-          <Link href={"/blogs"} prefetch={false} scroll={false}>
+          <Link href={"/blogs"} scroll={false}>
             <div
               className={`px-4 py-2 ${
                 pathName === "/blogs"

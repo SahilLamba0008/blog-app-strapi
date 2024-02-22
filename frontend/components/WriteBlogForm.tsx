@@ -1,11 +1,6 @@
 "use client";
 import { ICategory } from "@/lib/types";
-import React, {
-  ChangeEvent,
-  FormEvent,
-  ReactHTMLElement,
-  useState,
-} from "react";
+import React, { ChangeEvent, useState } from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import ImageInput from "./common/ImageInput";
 import KeywordsInput from "./common/KeywordsInput";
@@ -90,7 +85,7 @@ const WriteBlogForm = ({ categories }: { categories: ICategory[] }) => {
             </button>
             {isCategoriesOpen && (
               <div className="absolute w-[300px] my-2">
-                <ul className="bg-gray-100 border-[2px] rounded-lg dark:bg-gray-900  dark:border-gray-900 h-[300px] overflow-scroll">
+                <ul className="bg-gray-100 border-[2px] rounded-lg dark:bg-gray-900  dark:border-gray-900 h-[250px] overflow-y-scroll shadow-lg">
                   {categories.map((category: ICategory, index: number) => {
                     return (
                       <li
