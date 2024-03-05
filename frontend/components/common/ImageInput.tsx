@@ -1,17 +1,11 @@
 import Image from "next/image";
 import React, { useState } from "react";
+import { IoClose } from "react-icons/io5";
 
 const ImageInput = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = () => {
-    setIsDragging(false);
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -24,7 +18,6 @@ const ImageInput = () => {
     }
 
     setImageFile(file);
-    setIsDragging(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,18 +42,16 @@ const ImageInput = () => {
         <span className="text-red-500 dark:text-cyan-400">*</span>
       </label>
       <div
-        className={`flex items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#090D1F] ${
-          isDragging ? "hover:bg-gray-500 dark:hover:bg-[#131728]" : ""
-        }`}
+        className="flex items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50 dark:hover:bg-bray-800 dark:bg-[#090D1F] hover:bg-gray-200 dark:hover:bg-[#161a2d] cursor-pointer transition-hover duration-200 ease-in-out
+        "
         onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
         <label
           htmlFor="dropzone-file"
           className="flex flex-col items-center justify-center w-full h-full"
         >
-          <div className="flex flex-col items-center justify-center px-4 pt-5 pb-6 min-w-[300px]">
+          <div className="flex flex-col items-center justify-center px-4 pt-5 pb-6 min-w-[300px] cursor-pointer">
             <svg
               className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
               aria-hidden="true"
@@ -94,12 +85,20 @@ const ImageInput = () => {
       </div>
       {/* Display selected image if any */}
       {imageFile && (
-        <div className="mt-4 w-full  rounded-lg overflow-hidden">
+        <div className="mt-4 w-full rounded-lg overflow-hidden bg-gray-200 relative">
+          <button
+            type="button"
+            className="absolute z-10 right-2 top-2 bg-white rounded-md focus:ring-2 focus:ring-black transition-focus duration-150"
+            onClick={() => setImageFile(null)}
+          >
+            <IoClose size={25} />
+          </button>
           <Image
             src={URL.createObjectURL(imageFile)}
             alt="Selected Image"
-            height={300}
-            width={300}
+            height={250}
+            width={250}
+            className="mx-auto"
           />
         </div>
       )}

@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 
 const KeywordsInput = () => {
   const placeholderTags: string[] = ["Blog", "Mental Health", "Reading"];
-  const [tags, setTags] = useState<string[]>(placeholderTags);
+  const [tags, setTags] = useState<string[]>(placeholderTags); // initally set to placeholder tags
   const [tagName, setTagName] = useState<string>("");
 
   const handleEnterClick = (e: React.KeyboardEvent<HTMLElement>) => {

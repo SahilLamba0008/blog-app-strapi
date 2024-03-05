@@ -5,6 +5,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import ImageInput from "./common/ImageInput";
 import KeywordsInput from "./common/KeywordsInput";
 import RichTextEditor from "./common/RichTextEditor";
+import { IoCloudUpload } from "react-icons/io5";
 
 const WriteBlogForm = ({ categories }: { categories: ICategory[] }) => {
   const [title, setTitle] = useState<string>("");
@@ -25,9 +26,28 @@ const WriteBlogForm = ({ categories }: { categories: ICategory[] }) => {
       .replace(/-+$/, ""); // Remove trailing hyphens
   };
 
+  const handleBlogFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
-      <form className="flex flex-col w-full gap-2 mx-auto font-normal">
+      <form
+        className="flex flex-col w-full gap-2 mx-auto font-normal"
+        onSubmit={handleBlogFormSubmit}
+      >
+        <div className="flex justify-between items-center mt-10">
+          <h1 className="text-2xl font-bold border-l-4 border-black/20 dark:border-purple-300/45 pl-2">
+            Write your Blog Post
+          </h1>
+          <button
+            type="submit"
+            className="flex gap-2 items-center font-bold text-xl  bg-gradient-to-r from-indigo-500 from-0% via-sky-500 via-80% to-emerald-400 hover:to-100% rounded-md py-2 px-4 text-white transition-all duration-300 relative focus:ring-4 dark:focus:ring-white/20 h-fit w-fit"
+          >
+            Publish
+            <IoCloudUpload size={25} />
+          </button>
+        </div>
         <div className="w-full flex gap-8">
           <div className="w-full flex-1">
             <label htmlFor="title" className="block mt-5">
@@ -85,7 +105,7 @@ const WriteBlogForm = ({ categories }: { categories: ICategory[] }) => {
             </button>
             {isCategoriesOpen && (
               <div className="absolute w-[300px] my-2">
-                <ul className="bg-gray-100 border-[2px] rounded-lg dark:bg-gray-900  dark:border-gray-900 h-[250px] overflow-y-scroll shadow-lg">
+                <ul className="bg-gray-100 border-[2px] rounded-lg dark:bg-gray-900  dark:border-gray-200/40 h-[250px] overflow-y-scroll shadow-lg">
                   {categories.map((category: ICategory, index: number) => {
                     return (
                       <li
