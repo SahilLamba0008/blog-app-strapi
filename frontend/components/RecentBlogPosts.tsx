@@ -46,7 +46,8 @@ const RecentBlogPosts: NextPage = async () => {
                   href={`/blog/${article.attributes.slug}?id=${article.id}`}
                 >
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.attributes.Image.data.attributes.url}`}
+                    src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.attributes.Image.data.attributes.url}`} 
+                    // -------------------        blog without image case - not handled   -------------------- 
                     alt="post-cover"
                     height={500}
                     width={500}

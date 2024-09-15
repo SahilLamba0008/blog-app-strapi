@@ -53,7 +53,7 @@ export const getAllBlogs = async (): Promise<
     }
 
     const data = await res.json();
-    // console.log("Response data ->", data);
+    console.log("Response data ->", data);
     return data;
   } catch (error) {
     throw new Error(`${error}`);

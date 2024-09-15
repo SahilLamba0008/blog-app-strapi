@@ -11,7 +11,7 @@ const Page = ({
   const blogs_per_page = 6;
   const searchInput = searchParams["search"] ?? "";
 
-  console.log("Search Params All Blogs", page, blogs_per_page);
+  console.log("Search Params All Blogs", page, blogs_per_page, searchParams);
   return (
     <div>
       <div className="dark:bg-[#090D1F] dark:text-white px-28">
