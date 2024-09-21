@@ -41,7 +41,7 @@ const ThemeSwitcher = () => {
       </div>
       <div
         className={`slider bg-white dark:bg-[#090D1F] rounded-full h-6 w-6 mx-2 -translate-y-1/2 absolute z-10 top-1/2 left-0 ${
-          resolvedTheme === "light" ? "translate-x-[140%]" : "translate-x-0"
+          resolvedTheme === "dark" ? "translate-x-[140%]" : "translate-x-0"
         } transition-all duration-300 ease-in-out`}
       ></div>
     </div>
