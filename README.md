@@ -13,7 +13,7 @@ The project is organized into two main folders:
 
 Before you start, make sure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (version 18.x.x to 19.x.x) (v18.17.0 is preferred)
+- [Node.js](https://nodejs.org/) (v18.17.0 is preferred)
 - [npm](https://www.npmjs.com/)
 
 ## Getting Started
@@ -52,6 +52,9 @@ Before you start, make sure you have the following installed:
     ```bash
    cp .env.example .env.local
 
+   In case of error try using this key in .env.local :
+    NEXT_PUBLIC_STRAPI_API_URL=http://127.0.0.1:1337
+
 4. **Get you Strapi API Token :**
     - go to Strapi Admin Panel
     - Settings > API Tokens > (generate your own) 
@@ -63,3 +66,6 @@ Before you start, make sure you have the following installed:
 ### Project Screenshots : 
 ![Screenshot 2025-06-24 210611](https://github.com/user-attachments/assets/cfa7118b-1524-4e61-8f90-c940368df630)
 ![Screenshot 2025-06-24 210556](https://github.com/user-attachments/assets/541718b0-dd8f-4fcc-a4b7-0bd0d914c91c)
+
+![Screenshot 2025-06-24 220621](https://github.com/user-attachments/assets/916fcaa7-0086-455f-b8aa-10856f55abdf)
+![Screenshot 2025-06-24 220740](https://github.com/user-attachments/assets/5b9f7104-12d0-470f-8328-e8a1a4d36762)
