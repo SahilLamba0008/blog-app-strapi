@@ -13,7 +13,7 @@ The project is organized into two main folders:
 
 Before you start, make sure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (version 18.x.x to 19.x.x)
+- [Node.js](https://nodejs.org/) (version 18.x.x to 19.x.x) (v18.17.0 is preferred)
 - [npm](https://www.npmjs.com/)
 
 ## Getting Started
