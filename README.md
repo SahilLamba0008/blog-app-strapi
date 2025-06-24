@@ -64,8 +64,19 @@ Before you start, make sure you have the following installed:
    npm run dev
 
 ### Project Screenshots : 
+##### Auth Route :
 ![Screenshot 2025-06-24 210611](https://github.com/user-attachments/assets/cfa7118b-1524-4e61-8f90-c940368df630)
 ![Screenshot 2025-06-24 210556](https://github.com/user-attachments/assets/541718b0-dd8f-4fcc-a4b7-0bd0d914c91c)
 
+##### Blogs Route :
 ![Screenshot 2025-06-24 220621](https://github.com/user-attachments/assets/916fcaa7-0086-455f-b8aa-10856f55abdf)
+
+##### Home Route :
 ![Screenshot 2025-06-24 220740](https://github.com/user-attachments/assets/5b9f7104-12d0-470f-8328-e8a1a4d36762)
+
+##### Post a Blog Page : 
+![image](https://github.com/user-attachments/assets/a8ced70b-a211-4ca0-8463-4784a5f56f1a)
+
+##### Read a Blog : 
+![image](https://github.com/user-attachments/assets/06881e41-70fb-4b7b-bf50-d2c5986a5b9e)
+
