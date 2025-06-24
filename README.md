@@ -59,3 +59,7 @@ Before you start, make sure you have the following installed:
 5. **Start NextJS server:**
     ```bash
    npm run dev
+
+### Project Screenshots : 
+![Screenshot 2025-06-24 210611](https://github.com/user-attachments/assets/cfa7118b-1524-4e61-8f90-c940368df630)
+![Screenshot 2025-06-24 210556](https://github.com/user-attachments/assets/541718b0-dd8f-4fcc-a4b7-0bd0d914c91c)
